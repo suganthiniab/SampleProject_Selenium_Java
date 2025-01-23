@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import utils.ScreenshotUtils;
+
 public class DropDownListDemo {
 
 	public static void main(String[] args) {
@@ -24,7 +26,8 @@ public class DropDownListDemo {
 		select.selectByIndex(2);
 		select.selectByValue("1"); // provide 'value' attribute of option tag
 		select.selectByContainsVisibleText("Option 2");
-
+		ScreenshotUtils.takeScreenshot(driver);		
+		
 		driver.quit();
 	}
 

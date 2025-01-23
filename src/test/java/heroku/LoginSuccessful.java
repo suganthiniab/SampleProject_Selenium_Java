@@ -2,7 +2,10 @@ package heroku;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
 
 public class LoginSuccessful {
 
@@ -16,10 +19,13 @@ public class LoginSuccessful {
 		driver.findElement(By.id("username")).sendKeys("tomsmith");
 		driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
 		driver.findElement(By.className("radius")).click();
+		
+		//take screenshot once logged in
+		Shutterbug.shootPage(driver).save();
 
 		String expectedResult = "You logged into a secure area!";
-		
-		String actualResult = driver.findElement(By.className("flash")).getText();
+		WebElement flash = driver.findElement(By.className("flash"));
+		String actualResult = flash.getText();
 		System.out.println(actualResult);
 
 		if (actualResult.equals(expectedResult)) {
@@ -27,7 +33,9 @@ public class LoginSuccessful {
 		} else {
 			System.out.println("Test failed");
 		}
-
+		
+		//Highlight flash element on the screenshot taken
+		Shutterbug.shootPage(driver).highlight(flash).save();
 		driver.quit();
 	}
 }

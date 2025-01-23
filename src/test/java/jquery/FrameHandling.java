@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import com.assertthat.selenium_shutterbug.core.CaptureElement;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+
 public class FrameHandling {
 
 	public static void main(String[] args) {
@@ -29,7 +32,11 @@ public class FrameHandling {
 		driver.switchTo().frame(frame); // frame identified using webelement
 		//driver.switchTo().frame(0);
 		//driver.switchTo().frame(""); //name or id attribute of the frame
-
+		
+		//Take screenshot on initial stage of the frame
+		driver.switchTo().defaultContent();
+		Shutterbug.shootFrame(driver, frame, CaptureElement.FULL_SCROLL).save();
+		
 		// Read the initial text at the target element
 		String intitalTextOnTargetElement = driver.findElement(By.xpath("//div[@id = 'droppable']/p")).getText();
 		
@@ -37,10 +44,12 @@ public class FrameHandling {
 
 		WebElement sourceElement = driver.findElement(By.id("draggable"));
 		WebElement targetElement = driver.findElement(By.id("droppable"));
-
+		
+		
 		Actions action = new Actions(driver);
 		action.dragAndDrop(sourceElement, targetElement);
 		action.build().perform();
+			
 
 		/*
 		 * Read the latest text at the target element after dragging the source element
@@ -49,6 +58,10 @@ public class FrameHandling {
 		
 		String finalTextOnTargetElement = driver.findElement(By.xpath("//div[@id = 'droppable']/p")).getText();
 		System.out.println(finalTextOnTargetElement);
+		
+		//take screenshot after drag and drop function done
+		driver.switchTo().defaultContent();
+		Shutterbug.shootFrame(driver, frame, CaptureElement.FULL_SCROLL).save();
 
 		driver.quit();
 	}
