@@ -1,6 +1,7 @@
-package heroku;
+package jquery;
 
 import java.awt.Desktop.Action;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

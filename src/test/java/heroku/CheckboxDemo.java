@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import utils.ScreenshotUtils;
+
 public class CheckboxDemo {
 
 	public static void main(String[] args) {
@@ -16,7 +18,7 @@ public class CheckboxDemo {
 
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[1]")).click();		
 		driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
-
+		ScreenshotUtils.takeScreenshot(driver);
 		driver.quit();
 	}
 
