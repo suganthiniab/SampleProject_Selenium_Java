@@ -1,4 +1,4 @@
-package heroku;
+package heroku.waits;
 
 import java.time.Duration;
 
