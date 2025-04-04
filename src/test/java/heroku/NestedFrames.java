@@ -1,6 +1,7 @@
 package heroku;
 
 import java.sql.Time;
+import java.time.Duration;
 
 
 import org.openqa.selenium.By;
@@ -24,13 +25,14 @@ public class NestedFrames {
 		
 		switchBetweenFrames(topFrame, "frame-right");
 		switchBetweenFrames(topFrame, "frame-middle");
-		switchBetweenFrames(topFrame, "frame-left");	
-		
-		Thread.sleep(3000);		
-		WebDriver bottomFrame = driver.switchTo().frame("frame-bottom");
+		switchBetweenFrames(topFrame, "frame-left");
+
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("frame-bottom");
 		String textOnBottomFrame = driver.findElement(By.xpath("//body")).getText();		
 		System.out.println(textOnBottomFrame);	
 		driver.switchTo().defaultContent();
+		driver.quit();
 	}
 	
 	
@@ -40,6 +42,7 @@ public class NestedFrames {
 		bodyText = driver.findElement(By.xpath("//body")).getText();
 		System.out.println(bodyText);
 		subFrame.switchTo().parentFrame();
+		//driver.switchTo().defaultContent();
 	}
 
 }
