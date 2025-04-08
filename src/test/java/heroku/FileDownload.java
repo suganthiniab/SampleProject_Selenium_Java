@@ -7,8 +7,6 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,7 +25,7 @@ public class FileDownload {
 		driver.get("https://admin:admin@the-internet.herokuapp.com/");
 		driver.manage().window().maximize();
 		driver.findElement(By.linkText("Secure File Download")).click();
-		driver.findElement(By.linkText("testing.pdf")).click();
+		driver.findElement(By.linkText("sample3.pdf")).click();
 
 		// Intended file path will be saved as file instance
 		File downloadDirectory = new File("C:\\Users\\Suganthini2\\Downloads");
@@ -36,7 +34,7 @@ public class FileDownload {
 		File[] downloadDirectoryContents = downloadDirectory.listFiles();
 
 		for (File eachFile : downloadDirectoryContents) {
-			if (eachFile.getName().equals("testing")) {
+			if (eachFile.getName().equals("sample3.pdf")) {
 				Assert.assertTrue(true);
 				System.out.println("File Found: " + eachFile.getName());
 				System.out.println("File path: " + eachFile.getAbsolutePath());

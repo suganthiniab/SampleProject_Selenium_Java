@@ -27,11 +27,7 @@ public class FluentWaitExample {
 				.withTimeout(Duration.ofSeconds(5))
 				.pollingEvery(Duration.ofMillis(300))
 				.ignoring(NoSuchElementException.class, StaleElementReferenceException.class );
-		
-		
-		
-		
-		
+
 	}
 
 }
